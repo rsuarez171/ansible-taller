@@ -1,0 +1,124 @@
+
+PLAY [webserver] ***********************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************
+ok: [192.168.1.20]
+
+TASK [Epel repo is installed] **********************************************************************
+ok: [192.168.1.20]
+
+TASK [Install packages] ****************************************************************************
+ok: [192.168.1.20]
+
+TASK [Configure virtual host] **********************************************************************
+ok: [192.168.1.20]
+
+TASK [Web server running and enabled] **************************************************************
+ok: [192.168.1.20]
+
+TASK [Verify is apache running] ********************************************************************
+changed: [192.168.1.20]
+
+TASK [Show HTTPD STATUS] ***************************************************************************
+ok: [192.168.1.20] => {
+    "httpd_status": {
+        "changed": true, 
+        "cmd": [
+            "systemctl", 
+            "status", 
+            "httpd"
+        ], 
+        "delta": "0:00:00.011811", 
+        "end": "2019-08-13 21:11:42.998448", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2019-08-13 21:11:42.986637", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "● httpd.service - The Apache HTTP Server\n   Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled; vendor preset: disabled)\n   Active: active (running) since Tue 2019-08-13 20:53:32 EDT; 18min ago\n     Docs: man:httpd(8)\n           man:apachectl(8)\n Main PID: 7572 (httpd)\n   Status: \"Total requests: 0; Current requests/sec: 0; Current traffic:   0 B/sec\"\n   CGroup: /system.slice/httpd.service\n           ├─7572 /usr/sbin/httpd -DFOREGROUND\n           ├─7573 /usr/sbin/httpd -DFOREGROUND\n           ├─7574 /usr/sbin/httpd -DFOREGROUND\n           ├─7575 /usr/sbin/httpd -DFOREGROUND\n           ├─7576 /usr/sbin/httpd -DFOREGROUND\n           └─7577 /usr/sbin/httpd -DFOREGROUND\n\nAug 13 20:53:32 prueba1.ejemplo.com.uy systemd[1]: Stopped The Apache HTTP Server.\nAug 13 20:53:32 prueba1.ejemplo.com.uy systemd[1]: Starting The Apache HTTP Server...\nAug 13 20:53:32 prueba1.ejemplo.com.uy systemd[1]: Started The Apache HTTP Server.", 
+        "stdout_lines": [
+            "● httpd.service - The Apache HTTP Server", 
+            "   Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled; vendor preset: disabled)", 
+            "   Active: active (running) since Tue 2019-08-13 20:53:32 EDT; 18min ago", 
+            "     Docs: man:httpd(8)", 
+            "           man:apachectl(8)", 
+            " Main PID: 7572 (httpd)", 
+            "   Status: \"Total requests: 0; Current requests/sec: 0; Current traffic:   0 B/sec\"", 
+            "   CGroup: /system.slice/httpd.service", 
+            "           ├─7572 /usr/sbin/httpd -DFOREGROUND", 
+            "           ├─7573 /usr/sbin/httpd -DFOREGROUND", 
+            "           ├─7574 /usr/sbin/httpd -DFOREGROUND", 
+            "           ├─7575 /usr/sbin/httpd -DFOREGROUND", 
+            "           ├─7576 /usr/sbin/httpd -DFOREGROUND", 
+            "           └─7577 /usr/sbin/httpd -DFOREGROUND", 
+            "", 
+            "Aug 13 20:53:32 prueba1.ejemplo.com.uy systemd[1]: Stopped The Apache HTTP Server.", 
+            "Aug 13 20:53:32 prueba1.ejemplo.com.uy systemd[1]: Starting The Apache HTTP Server...", 
+            "Aug 13 20:53:32 prueba1.ejemplo.com.uy systemd[1]: Started The Apache HTTP Server."
+        ]
+    }
+}
+
+TASK [Copy content of site] ************************************************************************
+ok: [192.168.1.20]
+
+TASK [Apache running and enabled] ******************************************************************
+ok: [192.168.1.20]
+
+TASK [mariadb running and enabled] *****************************************************************
+ok: [192.168.1.20]
+
+TASK [Varify is mariadb running] *******************************************************************
+changed: [192.168.1.20]
+
+TASK [Show MARIADB STATUS] *************************************************************************
+ok: [192.168.1.20] => {
+    "mariadb_status": {
+        "changed": true, 
+        "cmd": [
+            "systemctl", 
+            "status", 
+            "mariadb"
+        ], 
+        "delta": "0:00:00.017581", 
+        "end": "2019-08-13 21:11:45.528074", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2019-08-13 21:11:45.510493", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "● mariadb.service - MariaDB database server\n   Loaded: loaded (/usr/lib/systemd/system/mariadb.service; enabled; vendor preset: disabled)\n   Active: active (running) since Tue 2019-08-13 21:09:53 EDT; 1min 51s ago\n  Process: 8516 ExecStartPost=/usr/libexec/mariadb-wait-ready $MAINPID (code=exited, status=0/SUCCESS)\n  Process: 8437 ExecStartPre=/usr/libexec/mariadb-prepare-db-dir %n (code=exited, status=0/SUCCESS)\n Main PID: 8515 (mysqld_safe)\n   CGroup: /system.slice/mariadb.service\n           ├─8515 /bin/sh /usr/bin/mysqld_safe --basedir=/usr\n           └─8677 /usr/libexec/mysqld --basedir=/usr --datadir=/var/lib/mysql --plugin-dir=/usr/lib64/mysql/plugin --log-error=/var/log/mariadb/mariadb.log --pid-file=/var/run/mariadb/mariadb.pid --socket=/var/lib/mysql/mysql.sock\n\nAug 13 21:09:51 prueba1.ejemplo.com.uy mariadb-prepare-db-dir[8437]: MySQL manual for more instructions.\nAug 13 21:09:51 prueba1.ejemplo.com.uy mariadb-prepare-db-dir[8437]: Please report any problems at http://mariadb.org/jira\nAug 13 21:09:51 prueba1.ejemplo.com.uy mariadb-prepare-db-dir[8437]: The latest information about MariaDB is available at http://mariadb.org/.\nAug 13 21:09:51 prueba1.ejemplo.com.uy mariadb-prepare-db-dir[8437]: You can find additional information about the MySQL part at:\nAug 13 21:09:51 prueba1.ejemplo.com.uy mariadb-prepare-db-dir[8437]: http://dev.mysql.com\nAug 13 21:09:51 prueba1.ejemplo.com.uy mariadb-prepare-db-dir[8437]: Consider joining MariaDB's strong and vibrant community:\nAug 13 21:09:51 prueba1.ejemplo.com.uy mariadb-prepare-db-dir[8437]: https://mariadb.org/get-involved/\nAug 13 21:09:51 prueba1.ejemplo.com.uy mysqld_safe[8515]: 190813 21:09:51 mysqld_safe Logging to '/var/log/mariadb/mariadb.log'.\nAug 13 21:09:51 prueba1.ejemplo.com.uy mysqld_safe[8515]: 190813 21:09:51 mysqld_safe Starting mysqld daemon with databases from /var/lib/mysql\nAug 13 21:09:53 prueba1.ejemplo.com.uy systemd[1]: Started MariaDB database server.", 
+        "stdout_lines": [
+            "● mariadb.service - MariaDB database server", 
+            "   Loaded: loaded (/usr/lib/systemd/system/mariadb.service; enabled; vendor preset: disabled)", 
+            "   Active: active (running) since Tue 2019-08-13 21:09:53 EDT; 1min 51s ago", 
+            "  Process: 8516 ExecStartPost=/usr/libexec/mariadb-wait-ready $MAINPID (code=exited, status=0/SUCCESS)", 
+            "  Process: 8437 ExecStartPre=/usr/libexec/mariadb-prepare-db-dir %n (code=exited, status=0/SUCCESS)", 
+            " Main PID: 8515 (mysqld_safe)", 
+            "   CGroup: /system.slice/mariadb.service", 
+            "           ├─8515 /bin/sh /usr/bin/mysqld_safe --basedir=/usr", 
+            "           └─8677 /usr/libexec/mysqld --basedir=/usr --datadir=/var/lib/mysql --plugin-dir=/usr/lib64/mysql/plugin --log-error=/var/log/mariadb/mariadb.log --pid-file=/var/run/mariadb/mariadb.pid --socket=/var/lib/mysql/mysql.sock", 
+            "", 
+            "Aug 13 21:09:51 prueba1.ejemplo.com.uy mariadb-prepare-db-dir[8437]: MySQL manual for more instructions.", 
+            "Aug 13 21:09:51 prueba1.ejemplo.com.uy mariadb-prepare-db-dir[8437]: Please report any problems at http://mariadb.org/jira", 
+            "Aug 13 21:09:51 prueba1.ejemplo.com.uy mariadb-prepare-db-dir[8437]: The latest information about MariaDB is available at http://mariadb.org/.", 
+            "Aug 13 21:09:51 prueba1.ejemplo.com.uy mariadb-prepare-db-dir[8437]: You can find additional information about the MySQL part at:", 
+            "Aug 13 21:09:51 prueba1.ejemplo.com.uy mariadb-prepare-db-dir[8437]: http://dev.mysql.com", 
+            "Aug 13 21:09:51 prueba1.ejemplo.com.uy mariadb-prepare-db-dir[8437]: Consider joining MariaDB's strong and vibrant community:", 
+            "Aug 13 21:09:51 prueba1.ejemplo.com.uy mariadb-prepare-db-dir[8437]: https://mariadb.org/get-involved/", 
+            "Aug 13 21:09:51 prueba1.ejemplo.com.uy mysqld_safe[8515]: 190813 21:09:51 mysqld_safe Logging to '/var/log/mariadb/mariadb.log'.", 
+            "Aug 13 21:09:51 prueba1.ejemplo.com.uy mysqld_safe[8515]: 190813 21:09:51 mysqld_safe Starting mysqld daemon with databases from /var/lib/mysql", 
+            "Aug 13 21:09:53 prueba1.ejemplo.com.uy systemd[1]: Started MariaDB database server."
+        ]
+    }
+}
+
+TASK [Open firewall httpd port (http)] *************************************************************
+ok: [192.168.1.20]
+
+TASK [Open firewall httpd port (https)] ************************************************************
+ok: [192.168.1.20]
+
+PLAY RECAP *****************************************************************************************
+192.168.1.20               : ok=14   changed=2    unreachable=0    failed=0   
+

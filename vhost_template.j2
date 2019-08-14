@@ -1,0 +1,14 @@
+<VirtualHost *:80>
+  ServerAdmin webmaster@{{ DOMAIN }}
+  ServerName www.{{ DOMAIN }}
+  DocumentRoot {{ DOC_ROOT }}
+
+  <Directory {{ DOC_ROOT }}>
+    AllowOverride All
+    Order allow,deny
+    Allow From All
+  </Directory>
+
+  CustomLog /var/log/httpd/{{ SDOMAIN }}.access.log combined
+  ErrorLog /var/log/httpd/{{ SDOMAIN }}.error.log
+</VirtualHost>

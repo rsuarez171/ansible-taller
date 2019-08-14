@@ -36,6 +36,14 @@
       state: started
       enabled: true
 
+  - name: Verify is Postfix running
+    command: systemctl status postfix
+    register: postfix_status
+
+  - name: Show POSTFIX STATUS
+    debug: 
+      var: postfix_status
+
   - name: Open firewall ports
     firewalld:
       service: smtp
